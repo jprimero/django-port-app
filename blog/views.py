@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog.models import Post
+from blog.models import Post, Comment
 
 
 def blog_index(request):
@@ -21,3 +21,13 @@ def blog_category(rqeuest, category):
         "posts": posts
     }
     return render(request, "blog_category.html", context)
+
+
+def blog_detail(request, pk):
+    post = Post.objects.get(pk=pk)
+    comments = Comment.objects.filter(post=post)
+    context = {
+        "post": post,
+        "comments": comments,
+    }
+    return render(request, "blog_detail.html", context)
