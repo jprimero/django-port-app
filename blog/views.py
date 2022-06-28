@@ -28,7 +28,7 @@ def blog_detail(request, pk):
     post = Post.objects.get(pk=pk)
 
     form = CommentForm()
-    if request.method = 'POST':
+    if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = Comment(
